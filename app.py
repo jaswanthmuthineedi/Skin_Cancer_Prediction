@@ -116,4 +116,4 @@ if choice == "Disease Prediction":
 
 
 
->>>>>>> fbfe77c (Updated TensorFlow version for Python 3.12)
+
