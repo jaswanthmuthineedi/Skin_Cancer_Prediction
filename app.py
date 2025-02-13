@@ -90,7 +90,7 @@ if choice == "Home":
     Upload an image in the **Disease Prediction** section to check for skin cancer.
     """)
 if choice == "Disease Prediction":
-    st.title("Skin Cancer Classification")
+    st.title("Disease Prediction")
     st.write("Upload your skin image to check if there is a disease and identify the type of cancer.")
     
     uploaded_file = st.file_uploader("Upload an image file", type=["jpg", "png", "jpeg"])
