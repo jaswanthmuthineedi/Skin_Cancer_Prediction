@@ -41,18 +41,23 @@ def preprocess_image(img_path):
 def predict_skin_cancer(img_path):
     img_array = preprocess_image(img_path)
     prediction = model.predict(img_array)
+    
     confidence = np.max(prediction) * 100  # Confidence percentage
-    
-    if confidence < 70:
-        result = "No disease detected"
-        disease_details = "The uploaded image does not indicate the presence of skin cancer."
+    predicted_class = np.argmax(prediction)  # Get index of highest probability
+    predicted_label = class_labels[predicted_class]
+
+    # Set different confidence thresholds
+    if predicted_label in ['akiec', 'bcc', 'mel']:  # Malignant cases
+        threshold = 50  # Lower threshold for malignant cases
     else:
-        predicted_class = np.argmax(prediction)  # Get index of highest probability
-        predicted_label = class_labels[predicted_class]
-        disease_name, disease_details = disease_info[predicted_label]  # Get actual disease name and details
-        result = disease_name
-    
-    return result, confidence, disease_details
+        threshold = 70  # Keep 70% for benign cases
+
+    if confidence < threshold:
+        return "No disease detected", confidence, "The uploaded image does not indicate the presence of skin cancer."
+
+    disease_name, disease_details = disease_info[predicted_label]
+    return disease_name, confidence, disease_details
+
 
 st.set_page_config(
     page_title="Skin cancer Prediction App",
