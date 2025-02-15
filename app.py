@@ -43,7 +43,7 @@ def predict_skin_cancer(img_path):
     prediction = model.predict(img_array)
     confidence = np.max(prediction) * 100  # Confidence percentage
     
-    if confidence < 50:
+    if confidence < 70:
         result = "No disease detected"
         disease_details = "The uploaded image does not indicate the presence of skin cancer."
     else:
