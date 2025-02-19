@@ -102,7 +102,7 @@ if choice == "Disease Prediction":
         with open(image_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
         
-        st.image(image_path, caption="Uploaded Image", use_container_width=True)
+        st.image(image_path, caption="Uploaded Image", width=300)
         st.write("")
         
         if st.button("Predict"):
